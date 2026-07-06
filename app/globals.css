@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* ---- Design tokens (source of truth) ---- */
+:root {
+  --paper: #faf9f6;
+  --ink: #17160f;
+  --pine: #0e3b36;
+  --pine-2: #0a2c29;
+  --signal: #f2601f;
+  --line: #ded9cd;
+  --mute: #6c6b61;
+}
+
+@theme {
+  --color-paper: #faf9f6;
+  --color-ink: #17160f;
+  --color-pine: #0e3b36;
+  --color-pine-2: #0a2c29;
+  --color-signal: #f2601f;
+  --color-line: #ded9cd;
+  --color-mute: #6c6b61;
+}
+
+@theme inline {
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-public-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-public-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--paper);
+}
+
+/* ---- Signature: mono uppercase eyebrow ---- */
+.eyebrow {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---- Signature: pulsing "line open" dot ---- */
+.dot-open {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--signal);
+  animation: dot-pulse 2.2s ease-out infinite;
+}
+@keyframes dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 96, 31, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(242, 96, 31, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(242, 96, 31, 0);
+  }
+}
+
+/* ---- Signature: hairline-grid cards ---- */
+.hairline-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.hairline-grid > * {
+  background: var(--paper);
+}
+
+/* ---- Cinematic base field: pure CSS pine + orange glow.
+       Every media section sits on this, so the site stays
+       beautiful with zero files in /public/media/. ---- */
+.cine-field {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 82% 8%, rgba(242, 96, 31, 0.16), transparent 55%),
+    radial-gradient(90% 70% at 12% 88%, rgba(242, 96, 31, 0.09), transparent 50%),
+    linear-gradient(160deg, #0e3b36 0%, #0a2c29 55%, #06201d 100%);
+}
+
+/* ---- Signature: film-grain overlay ---- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ---- Signature: trailing cursor halo (desktop only; element
+       rendered only on hover+fine-pointer devices) ---- */
+.cursor-halo {
+  position: fixed;
+  left: -180px;
+  top: -180px;
+  z-index: 50;
+  width: 360px;
+  height: 360px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(242, 96, 31, 0.09), transparent 70%);
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-open {
+    animation: none;
+    box-shadow: 0 0 0 3px rgba(242, 96, 31, 0.25);
+  }
+}
