@@ -2,7 +2,8 @@ import Link from "next/link";
 import HeroTitle from "@/components/HeroTitle";
 import MediaBackdrop from "@/components/MediaBackdrop";
 import Reveal from "@/components/Reveal";
-import { company, hero, links, media, pricing, quotes, stats } from "@/content/site";
+import { company, hero, links, pricing, quotes, stats } from "@/content/site";
+import { media } from "@/lib/media";
 
 function Eyebrow({
   children,

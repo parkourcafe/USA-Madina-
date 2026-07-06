@@ -9,7 +9,7 @@
 
 export type MediaSlot = {
   /** Poster image shown on mobile, reduced-motion, or while video loads. */
-  poster: string;
+  poster?: string;
   /** Optional MP4 (H.264). If the file is missing the poster (or a CSS field) shows instead. */
   mp4?: string;
   /** Optional WebM for smaller desktop transfer. */
