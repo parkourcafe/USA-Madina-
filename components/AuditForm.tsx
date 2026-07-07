@@ -21,7 +21,9 @@ export default function AuditForm() {
         body: JSON.stringify({
           name: data.get("name"),
           company: data.get("company"),
+          website: data.get("website"),
           mobile: data.get("mobile"),
+          salesChannels: data.get("salesChannels"),
           source: "audit-page",
         }),
       });
@@ -50,6 +52,18 @@ export default function AuditForm() {
         <input id="company" name="company" required autoComplete="organization" className={field} />
       </div>
       <div>
+        <label htmlFor="website" className="eyebrow mb-1.5 block text-mute">
+          Website
+        </label>
+        <input
+          id="website"
+          name="website"
+          inputMode="url"
+          autoComplete="url"
+          className={field}
+        />
+      </div>
+      <div>
         <label htmlFor="mobile" className="eyebrow mb-1.5 block text-mute">
           Mobile
         </label>
@@ -60,6 +74,17 @@ export default function AuditForm() {
           required
           autoComplete="tel"
           className={field}
+        />
+      </div>
+      <div>
+        <label htmlFor="salesChannels" className="eyebrow mb-1.5 block text-mute">
+          Sales channels
+        </label>
+        <textarea
+          id="salesChannels"
+          name="salesChannels"
+          rows={3}
+          className={`${field} min-h-24 resize-none`}
         />
       </div>
       <button

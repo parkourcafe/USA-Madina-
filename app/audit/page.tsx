@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const steps = [
   {
     title: "Send the form",
-    body: "Takes 20 seconds. Name, company, mobile — that's it.",
+    body: "Takes 30 seconds. Name, company, website, mobile, channels.",
   },
   {
     title: "We run your numbers",
