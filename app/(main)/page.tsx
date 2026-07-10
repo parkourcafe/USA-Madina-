@@ -38,7 +38,7 @@ function Hero() {
         <HeroTitle
           text={hero.h1}
           em={hero.h1Em}
-          className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl"
+          className="mt-6 max-w-3xl font-display text-[2.7rem] font-semibold leading-[1.03] tracking-tight sm:text-6xl lg:text-7xl"
         />
         <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/85 sm:text-lg">
           {hero.sub}
@@ -161,14 +161,48 @@ function WhatWeDo() {
             reports back every week.
           </p>
         </Reveal>
-        <div className="hairline-grid mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => (
-            <Reveal key={i} delay={(i % 3) * 0.05} className="p-6 sm:p-8">
-              <p className="eyebrow text-signal">{service.k}</p>
-              <h3 className="mt-3 font-display text-lg font-semibold">{service.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-mute">{service.body}</p>
-            </Reveal>
-          ))}
+        {/* Mobile: wide cinematic band above the list */}
+        <div className="relative mt-12 aspect-[16/10] overflow-hidden border border-line lg:hidden">
+          <div className="cine-field" />
+          {media.workVisual.poster && (
+            <img
+              src={media.workVisual.poster}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+        </div>
+        <div className="mt-6 grid gap-10 lg:mt-12 lg:grid-cols-[420px_1fr]">
+          {/* Desktop: tall sticky visual next to the list */}
+          <div className="hidden lg:block">
+            <div className="sticky top-20">
+              <div className="relative aspect-[3/4] overflow-hidden border border-line">
+                <div className="cine-field" />
+                {media.workVisual.poster && (
+                  <img
+                    src={media.workVisual.poster}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="divide-y divide-line border-t border-line">
+            {services.map((service, i) => (
+              <Reveal key={i} delay={0} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-8">
+                <p className="eyebrow w-24 flex-none pt-1 text-signal">{service.k}</p>
+                <div>
+                  <h3 className="font-display text-lg font-semibold">{service.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-mute">{service.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -293,28 +327,28 @@ const comparison = {
     {
       label: "What it costs",
       cells: [
-        "A small monthly fee — plus your evenings setting it up and babysitting it",
-        "Per-call or per-minute fees that climb with your call volume",
-        "“Free.” You pay in missed jobs instead",
+        "A small fee — plus your evenings babysitting it",
+        "Per-minute fees that climb with volume",
+        "“Free.” You pay in missed jobs",
         `From ${pricing.tiers[0].price}/mo, month to month`,
       ],
     },
     {
       label: "Who sets it up",
-      cells: ["You do", "You do", "Nobody", "We do — and we maintain it"],
+      cells: ["You do", "You do", "Nobody", "We do — and maintain it"],
     },
     {
       label: "Brings NEW calls?",
       cells: [
-        "No — it only handles what already rings",
-        "No — they answer, they don't recover",
+        "No — only handles what rings",
+        "No — they answer, don't recover",
         "No",
-        "Yes — lead flow setup plus text-back that turns hang-ups into booked jobs",
+        "Yes — lead flow + text-back",
       ],
     },
     {
       label: "Who reviews your numbers weekly",
-      cells: ["You, if you remember", "No one", "No one", "A human on our team, every week"],
+      cells: ["You, if you remember", "No one", "No one", "A human, every week"],
     },
   ],
 };

@@ -174,6 +174,9 @@ export const media = {
   loopVisual: {
     poster: "/media/loop-poster.jpg",
   } as MediaSlot,
+  workVisual: {
+    poster: "/media/work-visual.jpg",
+  } as MediaSlot,
   ctaVisual: {
     mp4: "/media/cta.mp4",
     poster: "/media/cta-poster.jpg",

@@ -32,6 +32,7 @@ export const media = {
   heroVideo: resolveSlot(slots.heroVideo),
   problemSequence: resolveSlot(slots.problemSequence),
   loopVisual: resolveSlot(slots.loopVisual),
+  workVisual: resolveSlot(slots.workVisual),
   ctaVisual: resolveSlot(slots.ctaVisual),
 };
 
