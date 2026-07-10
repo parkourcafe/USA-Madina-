@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import SafeImg from "@/components/SafeImg";
 import { company, founder } from "@/content/site";
+import { founderPhoto } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "About",
@@ -19,15 +19,19 @@ export default function AboutPage() {
       <div className="mt-14 grid gap-12 lg:grid-cols-[380px_1fr]">
         <figure className="relative aspect-[4/5] w-full max-w-sm overflow-hidden border border-line">
           <div className="cine-field" />
-          {/* Shown until a real founder.jpg lands in /public/media/ */}
-          <p className="eyebrow absolute inset-0 flex items-center justify-center p-6 text-center text-paper/50">
-            [Placeholder — real founder photo]
-          </p>
-          <SafeImg
-            src={founder.photo}
-            alt={founder.photoAlt}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          {founderPhoto ? (
+            <img
+              src={founderPhoto}
+              alt={founder.photoAlt}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <p className="eyebrow absolute inset-0 flex items-center justify-center p-6 text-center text-paper/50">
+              [Placeholder — real founder photo]
+            </p>
+          )}
           <figcaption className="absolute bottom-0 left-0 right-0 bg-pine-2/85 p-4">
             <p className="font-display font-semibold text-paper">{founder.name}</p>
             <p className="eyebrow mt-1 text-paper/60">Founder, {company.name}</p>
